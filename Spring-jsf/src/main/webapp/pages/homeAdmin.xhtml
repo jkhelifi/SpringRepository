@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	   xmlns:f="http://xmlns.jcp.org/jsf/core"
+	   xmlns:h="http://xmlns.jcp.org/jsf/html"
+	   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	   xmlns:jsf="http://xmlns.jcp.org/jsf"
+	   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	   xmlns:p="http://primefaces.org/ui">
+	   
+	<h:head>
+	<title>Management Users</title>
+		<h1>Add User</h1>
+		<hr/>
+		
+		<p:panel header="New person">
+ 
+			<h:form>
+				<p:panel columns="2" >
+					
+					<h:outputText value="First Name" />
+					<p:inputText value="#{userBean.personne.nom}"/>
+					<h:outputText value="Last Name" />
+					<p:inputText value="#{userBean.personne.prenom}"/>
+					<p:commandButton value="add user" update=":show" action="#{userBean.add()}">
+					<f:ajax render="@all" />
+					</p:commandButton>
+				</p:panel>
+			</h:form>
+		</p:panel>
+		<h2>Persons List</h2>
+		<hr/>
+		
+		
+		
+		
+		<h:form id="show">
+		<p:dataTable emptyMessage="List empty!"
+					 paginator="true"
+					 paginatorPosition="bottom"
+					 rows="5"
+					 value="#{userBean.personnes}"
+					 var="pers">
+		<p:column headerText="id">
+			<h:outputText value="#{pers.id}" />
+		</p:column>
+		<p:column headerText="First Name">
+			<h:outputText value="#{pers.nom}" />
+		</p:column>
+		<p:column headerText="Last Name">
+			<h:outputText value="#{pers.prenom}" />
+		</p:column>
+	<p:column headerText="******">
+			<p:commandButton value="Delete" action="#{userBean.delete(pers)}" update=":show">
+			<f:ajax render="@all" />
+			</p:commandButton>
+	</p:column>
+	<p:column headerText="******">
+				<f:facet name="header"></f:facet>
+					<h:commandButton value="update"  >
+					
+						<f:setPropertyActionListener 
+						   target="#{userBean.per}" value="#{pers}" >
+						</f:setPropertyActionListener>
+						<f:setPropertyActionListener
+							target="#{userBean.form}" value="true">
+						</f:setPropertyActionListener>
+					</h:commandButton>
+				</p:column>
+	
+		</p:dataTable>
+		</h:form>
+		<p:panel header="Update">
+		<h:form id="f3" rendered="#{userBean.form}">
+			<p:panelGrid columns="2">
+					
+					<h:outputText value="First Name" />
+					<p:inputText value="#{userBean.per.nom}"/>
+					<h:outputText value="Last Name" />
+					<p:inputText value="#{userBean.per.prenom}"/>
+					<p:commandButton value="update user" update=":show" action="#{userBean.update()}">
+					</p:commandButton>
+				</p:panelGrid>
+				
+				
+			
+			
+			
+		</h:form>
+		</p:panel>
+		
+		
+		</h:head>
+	   
+</html>	   
