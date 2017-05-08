@@ -10,6 +10,8 @@ public class TestMydataBase {
 				ClassPathXmlApplicationContext("ApplicationContext.xml");
 		System.out.println("**************dataBase created with success!!!****************");
 
+		
+		
 	}
 
 }

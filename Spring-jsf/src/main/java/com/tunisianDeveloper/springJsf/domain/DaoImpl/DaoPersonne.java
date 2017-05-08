@@ -22,34 +22,28 @@ public class DaoPersonne implements IDaoPersonne {
 	@Override
 	public Boolean createPersonne(Personne personne) {
 				
-		try {
+		
 			entity.persist(personne);
 			return true;
-		} catch (Exception e) {
-			return false;
-		}
 				
 				
 	}
 
 	@Override
 	public Boolean updatePersonne(Personne personne) {
-		try {
+		
 			entity.merge(personne);
 			return true;
-		} catch (Exception e) {
-			return false;
-		}
+		
 	}
 
 	@Override
 	public Boolean deletePersonne(Personne personne) {
-		try {
-			entity.remove(personne);
+		
+			
+			entity.remove(entity.merge(personne));
 			return true;
-		} catch (Exception e) {
-			return false;
-		}
+		
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public interface IPersonneService {
 	
 	Boolean addUser(Personne user);
 	Boolean updateUser(Personne user);
-	Boolean deleteUser(Personne  user);
+	Boolean deleteUser(Personne personne);
 	Personne getUserById(Integer id);
 	List<Personne> getAllUser();
 }

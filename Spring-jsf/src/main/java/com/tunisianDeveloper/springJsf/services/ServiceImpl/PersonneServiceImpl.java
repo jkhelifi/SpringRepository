@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.tunisianDeveloper.springJsf.domain.IDao.IDaoPersonne;
 import com.tunisianDeveloper.springJsf.domain.entities.Personne;
@@ -11,6 +12,7 @@ import com.tunisianDeveloper.springJsf.services.IService.IPersonneService;
 
 
 @Service("usermanager")
+@Transactional
 public class PersonneServiceImpl implements IPersonneService {
 
 	
@@ -30,9 +32,9 @@ public class PersonneServiceImpl implements IPersonneService {
 	}
 
 	@Override
-	public Boolean deleteUser(Personne user) {
+	public Boolean deleteUser(Personne personne) {
 		
-		return iDaouser.deletePersonne(user) ;
+		return iDaouser.deletePersonne(personne) ;
 	}
 
 	@Override
